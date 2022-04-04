@@ -2,6 +2,7 @@ package dynamic.trading.market.data.client.service;
 import dynamic.trading.market.data.client.constant.Exchange;
 import dynamic.trading.market.data.client.constant.Instrument;
 import dynamic.trading.market.data.client.constant.MdEntryType;
+import dynamic.trading.market.data.client.constant.MessageType;
 import io.netty.buffer.ByteBuf;
 
 public class MDService {
@@ -11,10 +12,10 @@ public class MDService {
         int bufOffset = 0;
         byte messageType = byteBuf.getByte(bufOffset);
         switch (messageType){
-            case 87:
+            case MessageType.SNAPSHOT_REFRESH:
                 snapshotRefresh(byteBuf);
                 break;
-            case 76:
+            case MessageType.PRICE_REQUEST_RESPONSE:
                 priceRequestResponse(byteBuf);
         }
     }
